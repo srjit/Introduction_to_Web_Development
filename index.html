@@ -2,9 +2,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="chrome=1">
-	<title> Vote Now !! </title>
-
+	<title> My custom web page !! </title>
 	<link rel="stylesheet" href="styles/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="styles/pygment_trac.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
@@ -14,53 +14,45 @@
 <body>
 	<div class="wrapper">
 		<header>
-			<h1>Vote for your favorite Voice Assistant!!</h1>
+			<h1> Hi <label id="p1">null</label>, this is a test web page!!</h1>
 		</header>
 
 		<section>
 		  <div class="row">
+		    <img src="images/firefox-icon.png" alt="Firefox logo">
+		   </div>
 
-		    <div class="col-lg-4 col-md-4 col-xs-4 thumb">
-		      <a class="thumbnail" href="#">
-			<img class="img-responsive" src="images/alexa.png" alt="" onclick="updateAlexaCount()">
-		      </a>
-		     <h3> Amazon Alexa </h3>
-		    </div>
-
-		    <div class="col-lg-4 col-md-4 col-xs-4 thumb">
-		      <a class="thumbnail" href="#">
-			<img class="img-responsive" src="images/googlehome.png" alt="" onclick="updateHomeCount()">
-		      </a>
-		      <h3> Google Home </h3>
-		    </div>
-		    
-		    <div class="col-lg-4 col-md-4 col-xs-4 thumb">
-		      <a class="thumbnail" href="#">
-			<img class="img-responsive" src="images/siri.png" alt="" onclick="updateSiriCount()">
-		      </a>
-		    </div>
-		      <h3> Siri </h3>
-		    
-		</section>	      	
-
-		<section>
-		  <h2> Poll Status </h2>
-
-		  <h4>Amazon Alexa: </h4>
-		  <h4>Google Home: </h4>
-		  <h4>Apple Siri: </h4>
-
-		  <input type="hidden" id="alexa_vote_count" name="alexa_vote_count" value="0">
-		  <input type="hidden" id="home_vote_count" name="home_vote_count" value="0">
-		  <input type="hidden" id="siri_vote_count" name="siri_vote_count" value="0">		  
-
-
+		  <h5>This is a simple web page which has been designed as a part of the first homework of Information Visualization course at Northeastern University.</h5>
 		</section>
 
+		<section>
+		  We demonstrate the power of basic web dev tools such as:
+		  <ul>
+		    <li>HTML</li>
+		    <li>CSS</li>
+		    <li>Javascript</li>		    
+		  </ul>
+
+		  and in addition, the homework provides an introduction to tools such as:
+		  <ul>
+		    <li>Github, for version control and management </li>
+		    <li>Web servers, with the use of python as an example</li>
+		    <li>Browser tools that assist webpage debugging</li>
+		   <ul>
+		</section>
+
+		
 		<footer>
 			<p>Maintained by <a href="mailto:sreekumar.s@husky.neu.edu">sreekumar.s@husky.neu.edu</a></p>
-			<p><small>Theme modified from <a href="https://github.com/orderedlist">orderedlist</a></small></p>
 		</footer>		
 		<script src="scripts/main.js"></script>
+		<script>
+		  $(document).ready(function () {
+		      var person = prompt("Please enter your name to continue");
+		      if (person != null) {
+			  document.getElementById("p1").innerHTML = person;
+		      }
+		  });
+		</script>
 </body>
 </html>		  
