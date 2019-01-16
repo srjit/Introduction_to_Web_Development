@@ -1,8 +1,12 @@
 $(document).ready(function () {
-     var person = prompt("Please enter your name to continue");
-     if (person != null) {
-	  document.getElementById("p1").innerHTML = person;
-      }
+
+    if (!localStorage.getItem('name')) {
+	setUserName();
+    } else {
+	var storedName = localStorage.getItem('name');
+	document.getElementById("p1").innerHTML = storedName;
+    }
+
 });
 
 
@@ -16,3 +20,11 @@ function clickImg2() {
     $('#img2').hide();
     $('#img1').show();
 }
+
+
+function changeUser() {
+    var person = prompt("Please enter your name to continue");
+    localStorage.setItem('name', person);
+    document.getElementById("p1").innerHTML = person;
+}
+
