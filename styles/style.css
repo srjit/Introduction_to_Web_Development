@@ -1,10 +1,23 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400italic,700italic,300,700);
 
+
+.button-user-change {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
 body {
   padding:50px;
   font:16px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color:#777;
   font-weight:300;
+  background-color: C0C0C0;
 }
 
 b {
