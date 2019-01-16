@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="chrome=1">
 	<title> Vote Now !! </title>
 
-	<link rel="stylesheet" href="styles/styles.css">
+	<link rel="stylesheet" href="styles/style.css">
 	<link rel="stylesheet" href="styles/pygment_trac.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
@@ -14,20 +14,48 @@
 <body>
 	<div class="wrapper">
 		<header>
-			<h1>Sreejith Sreekumar</h1>
+			<h1>Vote for your favorite Voice Assistant!!</h1>
 		</header>
 
 		<section>
-		  <p><h4>Hi! I am Sreejith. </h4> </p>
+		  <div class="row">
+
+		    <div class="col-lg-4 col-md-4 col-xs-4 thumb">
+		      <a class="thumbnail" href="#">
+			<img class="img-responsive" src="images/alexa.png" alt="" onclick="updateAlexaCount()">
+		      </a>
+		     <h3> Amazon Alexa </h3>
+		    </div>
+
+		    <div class="col-lg-4 col-md-4 col-xs-4 thumb">
+		      <a class="thumbnail" href="#">
+			<img class="img-responsive" src="images/googlehome.png" alt="" onclick="updateHomeCount()">
+		      </a>
+		      <h3> Google Home </h3>
+		    </div>
+		    
+		    <div class="col-lg-4 col-md-4 col-xs-4 thumb">
+		      <a class="thumbnail" href="#">
+			<img class="img-responsive" src="images/siri.png" alt="" onclick="updateSiriCount()">
+		      </a>
+		    </div>
+		      <h3> Siri </h3>
+		    
 		</section>	      	
 
+		<section>
+		  <h2> Vote Count </h2>
+
+		  <h4>Amazon Alexa:</h4>
+		  <h4>Google Home:</h4>
+		  <h4>Apple Siri:</h4>
+		      
+		</section>
 
 		<footer>
 			<p>Maintained by <a href="mailto:sreekumar.s@husky.neu.edu">sreekumar.s@husky.neu.edu</a></p>
 			<p><small>Theme modified from <a href="https://github.com/orderedlist">orderedlist</a></small></p>
 		</footer>		
-<script>		  
-</script>
-
+		<script src="scripts/main.js"></script>
 </body>
 </html>		  
