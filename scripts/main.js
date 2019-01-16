@@ -8,3 +8,15 @@ $(document).ready(function () {
 });
 
 
+
+
+function clickImg1() {
+    $('#img1').hide();
+    $('#img2').show();
+}
+
+
+function clickImg2() {
+    $('#img2').hide();
+    $('#img1').show();
+}
