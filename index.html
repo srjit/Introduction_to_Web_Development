@@ -18,10 +18,6 @@
 		</header>
 
 		<section>
-		  <!-- <div class="row"> -->
-		  <!--   <img id="img1" src="images/firefox-icon.png" alt="Firefox logo" onclick="clickImg1()"> -->
-		  <!--   <img id="img2" style="display:none;" src="images/firefox2.png" alt="Firefox logo 2"onclick="clickImg2()"> -->
-		  <!--  </div> -->
 
 		  <h5><p>Sales forecasting is one of the most common time series analysis problems. Being able to estimate the number of products that a store going to sell in future will allow store managers to prepare the inventory, the number of employees needed minimizes over and under stocking thereby minimizing losses and most importantly maximizes sales and customer satisfaction. </p>
 <p>
@@ -51,28 +47,134 @@ The web application provides an interface by which data scientists or store mana
   <li> Annualized_CPI	- Annual Consumer Price Index (CPI) [Quantitative]</li>
 </ul>
 
+<h2> Clean up and Preprocessing Steps </h2>
+
+<ul>
+<li>Typecasting Features (For Instance: Date).</li>
+<li>Conditional processing of features Holiday and Destination_Event to numeric from string to numeric.</li>
+<li>One-Hot encoding of categorical features.</li>
+<li>Normalizing the quantitative features.</li>
+<li>Character count for text features as a new feature.</li>
+<li>Imputing Missing values for quantitative features Econ_ChangeGDP, Econ_JobsChange, Annualized_CPI using forward filling as these are an economic indicator which will remain same.</li>
+</ul>
+
+<h2> Data Analysis </h2>
+
+<h4>Correlation Plots</h4>
+
+<div class="row">
+		    <img id="img1" src="images/corr.png" alt="Variable Correlations">
+</div>
+		  <p>We also brought week as a variable in our analysis from the date and looked at the variation of sales prices over the three years with heatmaps. The anticipated climb in sales during the weeks of November/December can be easily observed here.</p>
+<p>We also brought week as a variable in our analysis from the date and looked at the variation of sales prices over the three years with heatmaps. The anticipated climb in sales during the weeks of November/December can be easily observed here.</p>
+<div class="row">
+		    <img id="img1" src="images/gr1.png" alt="">
+</div>
+<p>To be able to study the trend in features like ‘Num_Employees’ and ‘Num_Customers’ over the time especially during Black Friday and Christmas for a given store, we have visualized the data using plotly. Below we can see the Number of employees required climbs up during the holidays season to able to help high volume of customers needs.</p>
+<div class="row">
+		    <img id="img1" src="images/gr2.png" alt="">
+</div>
+
+<h2> Task Analysis </h2>
+
+<div class="row">
+		    <img id="img1" src="images/task.png" alt="">
+</div>
+
+<h2> Model Description </h2>
+
+<h4> LSTM </h4>
+
+<p> Long short term memory is a modification of the vanilla recurrent neural networks. LSTMs can process entire sequences of data (such as speech or video). This sequence learning capability is LSTM the reason it became a choice for our time series modeling. </p>
+<p> Since the size of our dataset is small, walk forward validation has been employed for performance comparison and tuning of our models. The modeling for  LSTM has been conditioned on the store. The sales data of a store between the durations from the beginning date until 2014-01-01, 2014-02-01, 2014-03-01, 2014-04-01, and 2014-05-01 has been used for training and the rest of the data has been used in testing during the walk forward cross-validation. The sequence model with 3 LSTM layers has been able to obtain an average RMSE of 18116.48. </p>
+
+<h4> ARIMA </h4>
+<p> An autoregressive integrated moving average, or ARIMA, is a statistical analysis model. It is a  forecasting technique that projects the future values of a series based entirely on its own inertia. We have decomposed the dataset into different components like trend, seasonality, residual. Then the data is made stationary using differentiation. </p>
+<p>We have used the first 18 months as a part of the training data and the next 6 months as a part of the testing data. The RMSE  is calculated for each store and we have obtained an average RMSE of 18565.45  with considering only the Sales as a time-dependent feature.</p>
+<p>A different approach of using ARIMA  is experimented by considering multiple features of the store but the RMSE did not see any improvement.</p>
 
 
-		<br>
-		<br>
-        	  We demonstrate the power of basic web dev tools such as:
-		  <ul>
-		    <li>HTML</li>
-		    <li>CSS</li>
-		    <li>Javascript</li>		    
-		  </ul>
+<h4> XGBoost </h4>
 
-		  and in addition, the homework provides an introduction to tools such as:
-		  <ul>
-		    <li>Github, for version control and management </li>
-		    <li>Web servers, with the use of python as an example</li>
-		    <li>Browser tools that assist webpage debugging</li>
-		   <ul>
-		</section>
+		  <p>XGBoost is a gradient boosting algorithm. It is also known as regularized boosting which has a good bias-variance tradeoff to reduce overfitting (which lacks in GBM). In order to use the supervised machine learning algorithms on time series data, we have used feature engineering techniques to extract time-related features like dayofweek, quarter, year, month, day. Also to capture the seasonality of the data, we have created Moving Averages and lags of different time windows which are extracted using autocorrelation. </p>
+		  <p> We used the first 18 months of data as part of training dataset and last six months as the test dataset. For model evaluation, we have used root mean square error (RMSE).  In the initial model design we have considered all the extracted and static features until the present day (i.e., to predict the sales at time ‘t’ we used features until time ‘t’), which resulted in a better model performance with RMSE value of 6138.18 for XGBoost model. As suggested, we have restricted the features to time step ‘t-1’ (i.e., to predict sales at ‘t’ we gave the features until time step ‘t-1’ as input to model) and observed increase in RMSE value to 6956.57 on test data. </p>
+		  <p>To have a better understanding of the model performance variability we have used forward validation (explained more in the next section) where we received an average RMSE value of 6131.95. </p>
+
+<h2> Design Process </h2>
+		  
+<h4>Model Quality Analysis Plot  </h4>
+<p>
+  Cross-validation plays a major role in evaluating the model performance variability. As we can’t use K-Fold cross-validation on time series data, we have approached using forward testing or nested cross-validation. It is a practical approach to validate the model performance as the test data increases chronologically after the training data. We have considered first 18 months as training dataset and next month as test dataset in the first step, which will be increased by one month chronologically in each step for both train and test datasets as indicated in the below figure.   </p>
+<div class="row">
+		    <img id="img1" src="images/gr3.png" alt="">
+</div>
+
+		  <p>
+Below is the plot indicating the forecasted sales in each step of cross-validation for store ‘Louisville’ (user will be provided onto select the store and directed to the respective plot on selection in D3). We have used plotly to plot the forecasted sales. 
+
+		  </p>
+
+<h4> Stacked area Chart  </h4>
+		  
+<p>The original sketch is to show multiple area plots having a shared x-axis. Instead of having multiple area charts, a stacked area chart is chosen to visualize the historical sales data across all the stores over time .The idea is to see the sales across different stores on a particular day and this can be seen in the final graph interactively by hovering on a particular day. Different colors are used for different stores to show the variations. The below plot shows a static snapshot of the stacked area chart.
+Interactivity: A date range slide bar will be included to zoom in and zoom out.
+On hovering a particular day in the plot the sales across all the stores for a day are shown using a tooltip.
+<p>
+
+ <div class="row">
+		    <img id="img1" src="images/gr4.png" alt="">
+</div>
+
+<h4> Forecast Plot </h4>
+ <div class="row">
+		    <img id="img1" src="images/gr5.png" alt="">
+</div>
+
+<p>On selecting a particular store in the stacked area chart it links to the index chart below 
+Showing the forecast results for that particular store for the next 10 days. </p>
+
+
+<h2> Final Visualizations </h2>
+<h4> Model Quality </h4>
+<div class="row">
+		    <img id="img1" src="images/gr6.png" alt="">
+</div>
+
+<h4> Historical Data And Forecasting </h4>
+
+<div class="row">
+		    <img id="img1" src="images/gr7.png" alt="">
+</div>
+<h4> Packages Utilized in Coding </h4>
+The following packages have been used in the development of this application
+<ul>
+
+  <li>Flask</li>
+<li>flask_restful</li>
+<li>pandas</li>
+<li>numpy</li>
+<li>gunicorn</li>
+<li>tensorflow</li>
+<li>keras</li>
+<li>sklearn</li>
+<li>datetime</li>
+<li>statsmodels</li>
+<li>python-dateutil</li>
+<li>datetime</li>
+  <li>xgboost</li>
+  
+</ul>
+<h4> Link to the app deployed on Heroku Web Server </h4>
+<a href="https://sales-ts-forecast.herokuapp.com/">Sales Time Series Forecasting</a>
+
+<h2>Conclusion</h2>
+
+ 
+</section>
 
 		
 		<footer>
-			<p>Maintained by <a href="mailto:sreekumar.s@husky.neu.edu">sreekumar.s@husky.neu.edu</a></p>
+			<!-- <p>Maintained by <a href="mailto:sreekumar.s@husky.neu.edu">sreekumar.s@husky.neu.edu</a></p> -->
 		</footer>		
 		<script src="scripts/main.js"></script>
 </body>
