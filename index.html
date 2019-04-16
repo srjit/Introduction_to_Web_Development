@@ -2,7 +2,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="chrome=1">
-	<title> My custom web page !! </title>
+	<title> Time Series Analysis on Sales Data </title>
 	<link rel="stylesheet" href="styles/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="styles/pygment_trac.css">
@@ -14,19 +14,44 @@
 <body>
 	<div class="wrapper">
 		<header>
-			<h1> Hi <label id="p1"></label>, Welcome! This is a test web page!</h1>
+			<h1> Series Analysis on Sales Data </h1>
 		</header>
 
 		<section>
-		  <div class="row">
-		    <img id="img1" src="images/firefox-icon.png" alt="Firefox logo" onclick="clickImg1()">
-		    <img id="img2" style="display:none;" src="images/firefox2.png" alt="Firefox logo 2"onclick="clickImg2()">
-		   </div>
+		  <!-- <div class="row"> -->
+		  <!--   <img id="img1" src="images/firefox-icon.png" alt="Firefox logo" onclick="clickImg1()"> -->
+		  <!--   <img id="img2" style="display:none;" src="images/firefox2.png" alt="Firefox logo 2"onclick="clickImg2()"> -->
+		  <!--  </div> -->
 
-		  <h5>This is a simple web page which has been designed as a part of the first homework of Information Visualization course at Northeastern University.</h5>
+		  <h5><p>Sales forecasting is one of the most common time series analysis problems. Being able to estimate the number of products that a store going to sell in future will allow store managers to prepare the inventory, the number of employees needed minimizes over and under stocking thereby minimizing losses and most importantly maximizes sales and customer satisfaction. </p>
+<p>
+The web application provides an interface by which data scientists or store managers can use past sales data to forecast it from a selected date. In addition to allowing the user to retrain and tune three different time series models, the application also displays the model performance, past information and forecasted predictions visually. </p>
+</h5>
+
+<h2> The Data </h2>
+<h5> <p> The dataset is propritory sales information of 10 different stores, which are the clients of DataRobot Inc. This data was available to us in CSV format and it included the following features
+</p> </h5>
+
+<ul>
+  <li> Store_Location 	- Different locations of the store [Categorical]</li>
+  <li> Date		 	- Year, month and day of the sales of the stores [Quantitative]</li>
+  <li> Sales			- Sales of different stores over time [Quantitative]</li>
+  <li> Store_Size		- size of the store [Quantitative]</li>
+  <li> Num_Employees	- Number of employees on that particular date and store [Quantitative]</li>
+  <li> Returns_Pct		- Return percentage [Quantitative]</li>
+  <li> Num_Customer	- Number of Customers in a store and on a particular Date [Quantitative]</li>
+  <li> Pct_On_Sale		- Percentage on Sale [Quantitative]</li>
+  <li> Marketing		- Discount Information of the store on a date [Text]</li>
+  <li> Near_Xmas		- If a particular day is near to Christmas [Categorical]</li>
+  <li> Near_BlackFriday	- If a particular day is near to Black Friday [Categorical]</li>
+  <li> Holiday		- If a particular is a Holiday or not [Categorical]</li>
+  <li> Destination_Event	- If there is a destination event on that particular day or not [Categorical]</li>
+  <li> Econ_ChangeGDP	- Change in economy GDP [Quantitative]</li>
+  <li> Econ_JobsChange	- Change in jobs [Quantitative]</li>
+  <li> Annualized_CPI	- Annual Consumer Price Index (CPI) [Quantitative]</li>
+</ul>
 
 
-		<button class="button-user-change" onclick="changeUser()">Change user</button>
 
 		<br>
 		<br>
